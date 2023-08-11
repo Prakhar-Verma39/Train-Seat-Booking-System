@@ -10,9 +10,15 @@ const coachSchema = new Schema({
             ref: 'Row'
         }
     ],
+    seq_number: {
+        type: String,
+        default: "Default-101",
+        required: true
+    },
     capacity: {
         type: Number,
-        default: 80
+        default: 80,
+        required: true
     }
 });
 

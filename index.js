@@ -3,9 +3,12 @@ const path = require("path");
 const methodOverrride = require("method-override");
 const mongoose = require("mongoose");
 
-const Coach = require('./models/coach');
 const Row = require('./models/row');
 const Ticket = require('./models/ticket');
+
+const coachesRoutes = require('./routes/coaches');
+const rowsRoutes = require('./routes/rows');
+const ticketsRoutes = require('./routes/tickets');
 
 
 mongoose.connect('mongodb://127.0.0.1:27017/Bookings')
@@ -110,7 +113,6 @@ for(let row of coach){
     }
     total_empty_seats += row.emptySeats
 }
-  
 
 // HOME 'get' route
 
@@ -118,11 +120,11 @@ app.get('/', (req, res) => {
     res.render('home')
 })
 
-// coach 'get' route
 
-app.get('/coach', (req, res) => {
-    res.render('coaches/index', {booked_num, total_empty_seats, MAX_SEATS})
-})
+app.use('/coaches', coachesRoutes)
+app.use('/coaches/:id/reviews', rowsRoutes)
+app.use('/coaches/:id/:d/tickets', ticketsRoutes)
+
 
 // coach 'post' route
 
@@ -167,6 +169,7 @@ app.get('/tickets/:id', (req, res) => {
 app.delete('/tickets/:id', (req, res) => {
     console.log(req.body)
 })
+
 
 port = 4000 || PORT;
 

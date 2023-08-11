@@ -1,0 +1,19 @@
+<div class="row">
+    <h1 class="text-center">New Coach</h1>
+    <div class="col-md-6 offset-md-3"> 
+        <form action="/coaches" method="POST">
+            <div class="mb-3">
+                <label class="form-label" for="seq_number">Sequence Number: </label>
+                <input class="form-control" type="text" minlength=0 id="seq_number" name="coach[seq_number]" required>
+            </div>             
+            <div class="mb-3">
+                <label class="form-label" for="capacity">Capacity: </label>
+                <input class="form-control" type="number" min=0 id="capacity" name="coach[capacity]" required>
+            </div>             
+            <div class="mb-3">
+                <button class="btn btn-success">Add Coach</button>
+            </div>
+        </form>
+        <a href="/coaches">Back to All coaches</a>
+    </div>
+</div>
