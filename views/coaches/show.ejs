@@ -17,7 +17,7 @@
                     <h5 class="card-title"><strong>Coach : </strong><%= coach.seq_number %></h5>
                     <h5 class="card-title "><strong>Capacity: </strong><%= coach.capacity %></h5>
                     
-                    <form action="/coaches?_method=PATCH" method="POST">
+                    <form action="/coaches/<%= coach._id%>?_method=PATCH" method="POST">
                     <label for="seats" style="font-weight: 700; font-size: larger;">Select no. of seats: </label><br/>
                     <select name="required_seats" id ="seats" class="form-select px-2 mx-2" aria-label="Large select example">
                         <option value="0" selected>0</option>

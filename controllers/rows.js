@@ -1,4 +1,6 @@
+const Coach = require('../models/coach');
 const Row = require('../models/row');
+const Ticket = require('../models/ticket');
 
 module.exports.index = async (req, res) =>{
     console.log("rows are indexing..")
@@ -23,7 +25,7 @@ module.exports.renderEditForm = async (req, res) =>{
 };
 
 module.exports.updateRow = async (req, res) => {
-    console.log("updating Row..")
+  
 };
 
 module.exports.deleteRow = async (req, res) => {
