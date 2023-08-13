@@ -102,7 +102,9 @@ while(required_seats > 0)
         required_seats -= Math.min(required_seats, max)
 
         if(required_seats > 0){
-            update_max_row()
+            max_row_number = update_max_row(max_row_number)
+            max_row = await Row.findById(coach[max_row_number])
+            max = max_row.emptySeats
         }
     }
 
@@ -122,8 +124,28 @@ while(required_seats > 0)
 
     function update_max_row(max_row_number){
         if(max_row_number + 1 < coach.length && max_row_number >= 0){
-            
+            let before_row = Row.findById(coach[max_row_number - 1])
+            let after_row = Row.findById(coach[max_row_number + 1])
+            if(after_row.isAvailable){
+                if(before_row.isAvailable && before_row.emptySeats >= after_row.emptySeats){
+                    max_row_number -= 1}
+                else{
+                    max_row_number += 1}
+            }
+            else if(before_row.isAvailable){
+                max_row_number -= 1
+            }
+            else{
+                max_row_number = (max_row_number + 1) % coach.length
+            }
         }
+        else if(max_row_number + 1 >= coach.length){
+            max_row_number -= 1
+        }
+        else{
+            max_row_number += 1
+        }
+        return max_row_number
     }
 }
     res.redirect(`/coaches/${id}`)
