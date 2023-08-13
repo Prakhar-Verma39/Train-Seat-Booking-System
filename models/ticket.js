@@ -10,6 +10,10 @@ const ticketSchema = new Schema({
     buyer:{
         type: String,
         default: "Computer"
+    },
+    isDeleted: {
+        type: Boolean,
+        default: false
     }
 });
 

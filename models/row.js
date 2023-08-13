@@ -1,10 +1,10 @@
 const mongoose = require('mongoose');
-const Review = require('./ticket');
+const Ticket = require('./ticket');
 
 const Schema = mongoose.Schema;
 
 const rowSchema = new Schema({
-    isAvaliable:{
+    isAvailable:{
         type: Boolean,
         default: true
     },
@@ -25,5 +25,6 @@ const rowSchema = new Schema({
         required: true
     }
 });
+
 
 module.exports = mongoose.model('Row', rowSchema);

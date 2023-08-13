@@ -69,27 +69,70 @@ module.exports.renderEditForm = async (req, res) =>{
 
 module.exports.updateCoach = async (req, res) => {
 
-// add tickets on first row only
-const { coach } = await Coach.findById(req.params.id);
-const { required_seats } = req.body;
-const row_id = coach[0];
-const tickets = Array.from({ length: parseInt(required_seats) }, (_, i) => new Ticket({ seat_number: i + 1 }));
+// "update" tickets on first row only
+const { coach, id } = await Coach.findById(req.params.id);
+let { required_seats } = req.body;
+let max = 0
+let max_row = ""
+let max_row_number = 0
+while(required_seats > 0)
+{
+    for(let row_number=0;row_number < coach.length; row_number++)
+    {
+        let row_id = coach[row_number];
+        let row = await Row.findById(row_id)
+        if(row.isAvailable === true)
+        {
+        if(row.emptySeats >= required_seats)
+        {
+            assign_seat(row, row_number, required_seats)   
+            required_seats = 0
+        }
+        else if(row.emptySeats > max)
+        {
+            max = row.emptySeats
+            max_row = row
+            max_row_number = row_number
+        }
 
-await Ticket.insertMany(tickets);
-await Row.findByIdAndUpdate(row_id, { seats: tickets });
+        }
+    }
+    while(required_seats > 0 && max > 0){
+        assign_seat(max_row, max_row_number, Math.min(required_seats, max))
+        required_seats -= Math.min(required_seats, max)
 
-    res.redirect('/coaches')
+        if(required_seats > 0){
+            update_max_row()
+        }
+    }
+
+    async function assign_seat(row, row_number, required_seats){
+        // to make required number of tickets and provide them seat numbers
+        const tickets = Array.from({ length: parseInt(required_seats) }, (_, i) => new Ticket({ seat_number: i + 1 + row.seats.length + row_number*7}));
+        await Ticket.insertMany(tickets);
+
+        // to add new tickets in seats array, update ramaining empty seats in one row 
+        // and if all empty seats are booked then row becomes unavailable
+        await Row.findByIdAndUpdate(coach[row_number], {
+            $push: { seats: { $each: tickets } },
+            $inc: { emptySeats: -tickets.length },
+            $set: { isAvailable: row.emptySeats !== tickets.length } 
+        }, { new: true });
+    }
+
+    function update_max_row(max_row_number){
+        if(max_row_number + 1 < coach.length && max_row_number >= 0){
+            
+        }
+    }
+}
+    res.redirect(`/coaches/${id}`)
 
 };
 
 module.exports.deleteCoach = async (req, res) => {
     const { id } = req.params;
-
-    // to delete coach and all its rows by coach id.
-    await Promise.all([
-      Row.deleteMany({ _id: { $in: (await Coach.findById(id)).coach } }),
-      Coach.findByIdAndDelete(id)
-    ]);
+    await Coach.findByIdAndDelete(id)
     
     res.redirect('/coaches');
 };

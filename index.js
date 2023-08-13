@@ -44,14 +44,6 @@ app.use('/coaches/:id/:id/tickets', ticketsRoutes)
 
 
 
-// TICKETS 'create' route
-
-app.post('/tickets', (req, res) => {
-    console.log(req.body)
-    res.redirect('/tickets')
-})
-
-
 
 port = 4000 || PORT;
 
