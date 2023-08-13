@@ -24,15 +24,11 @@
                     <label for="seats" style="font-weight: 700; font-size: larger;">Select no. of seats: </label><br/>
                     <select name="required_seats" id ="seats" class="form-select px-2 mx-2" aria-label="Large select example">
                         <option value="0" selected>0</option>
-                        <option value="1">1</option>
-                        <option value="2">2</option>
-                        <option value="3">3</option>
-                        <option value="4">4</option>
-                        <option value="5">5</option>
-                        <option value="6">6</option>
-                        <option value="7">7</option>
+                        <% for(let i=1;i<=Math.min(total_empty_seats, 7);i++){ %>
+                        <option value="<%=i%>"><%=i%></option>
+                        <% } %>
                     </select>
-                    <input class="btn btn-primary" type="submit" value="SUBMIT" <% if(total_empty_seats == 0){%>disabled<%}%>>
+                    <input class="btn btn-primary btn-outline-success text-light" type="submit" value="SUBMIT" <% if(total_empty_seats == 0){%>disabled<%}%>>
 
                     </form>
                 </div>
@@ -40,13 +36,13 @@
 
              
             <% if(total_empty_seats == 0){%>
-                <p class="card-text">Not enough seats. <%=total_empty_seats%> seats are vacant.</p>
+                <p class="card-text"><%=total_empty_seats%> seats are vacant.</p>
             <%}else{%>
                 <p></p>
                 <%}%>
         </div>
     </div>
-    <div class="d-flex flex-wrap justify-content-center mx-auto p-4 pt-3">
+    <!-- <div class="d-flex flex-wrap justify-content-center mx-auto p-4 pt-3">
         <% for(let i=1; i<=MAX_SEATS; i++) { %>
       
             <% if(booked_num.includes(i)){%>
@@ -64,6 +60,35 @@
             <%}%>   
 
         <%}%>
+    </div> -->
+    <div class="conatiner mt-5">
+        <% for(let r=0; r<MAX_SEATS; r += 7) { %>
+            <% if(r%7 === 0){%>
+                <div class="row mx-auto" style="max-width: 50rem;">
+            <%}%>
+                <% for(let i=1 + r; i<=Math.min(r + 7, MAX_SEATS); i++) { %>
+                    <% if(booked_num.includes(i)){%>
+                        <div class="col">
+                            <div class="card bg-success mb-5 mx-auto" style="width: 4rem;">
+                                <div class="card-body text-center" style="width: 4rem; height: 4rem;">
+                                    <h5 class="card-title text-light"><%=i%></h5>
+                                </div>
+                            </div>
+                        </div>
+                    <%}else{%>
+                        <div class="col">
+                            <div class="card bg-secondary mb-5 mx-auto" style="width: 4rem;">
+                                <div class="card-body text-center" style="width: 4rem; height: 4rem;">
+                                    <h5 class="card-title"><%=i%></h5>
+                                </div>
+                            </div>
+                        </div>
+                    <%}%>   
+                <%}%>   
+            <% if(r%7 === 0){%>
+                </div>
+            <%}%>
+        <%}%>   
     </div>
 </body>
 </html>
