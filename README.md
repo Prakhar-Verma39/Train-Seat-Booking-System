@@ -28,6 +28,11 @@ The application allows users to reserve seats in a train coach following specifi
 - Seats are organized in rows with 7 seats per row (except the last row with remaining seats).
 - Seats are represented visually with colors to indicate availability.(Green - reserved seats and gray - unreserved seats.)
 
+### Glimpses
+
+![Screenshot 1](https://example.com/screenshot1.png)
+![Screenshot 2](https://example.com/screenshot2.png)
+
 ## Features
 
 1. There can be any number of seats in a coach of a train, with 7 seats in most rows and remaining seats in the last row.
