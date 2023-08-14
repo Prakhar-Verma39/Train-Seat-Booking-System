@@ -30,11 +30,11 @@ The application allows users to reserve seats in a train coach following specifi
 
 ### Glimpses
 
-![Screenshot (125)](https://github.com/Prakhar-Verma39/Train-Seat-Booking-System/assets/103757447/ae957f86-b627-4779-af49-0b62c3cb3e52)
-![Screenshot (126)](https://github.com/Prakhar-Verma39/Train-Seat-Booking-System/assets/103757447/3235b6a4-568d-4a75-88c0-a09296bf8d37)
-![Screenshot (127)](https://github.com/Prakhar-Verma39/Train-Seat-Booking-System/assets/103757447/a2232e64-252c-43f0-a290-e109476e06a0)
-![Screenshot (128)](https://github.com/Prakhar-Verma39/Train-Seat-Booking-System/assets/103757447/8a510477-c430-4f8b-9b31-5e7187d88080)
-![Screenshot (129)](https://github.com/Prakhar-Verma39/Train-Seat-Booking-System/assets/103757447/48857f71-8a8c-4a4c-8bb7-7714449732cd)
+![Web capture_14-8-2023_193134_localhost](https://github.com/Prakhar-Verma39/Train-Seat-Booking-System/assets/103757447/dd9e3e44-8afe-4cd4-b1dd-02513acfc63d)
+![Web capture_14-8-2023_193340_localhost](https://github.com/Prakhar-Verma39/Train-Seat-Booking-System/assets/103757447/b35e6e12-5910-4b79-baec-5889d3b93edf)
+![Web capture_14-8-2023_193518_localhost](https://github.com/Prakhar-Verma39/Train-Seat-Booking-System/assets/103757447/15dedf02-18f4-4e53-8358-9156b5fdca5b)
+![Web capture_14-8-2023_193444_localhost](https://github.com/Prakhar-Verma39/Train-Seat-Booking-System/assets/103757447/a22322a7-3f2a-4adc-a105-c223e85f9cb2)
+
 
 ## Features
 
