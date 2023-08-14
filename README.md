@@ -24,9 +24,9 @@ The application allows users to reserve seats in a train coach following specifi
 
 ### Assumptions
 
-- Seats are numbered starting from 1 to coach's capacity.
+- Seats are numbered starting from 1 to the coach's capacity.
 - Seats are organized in rows with 7 seats per row (except the last row with remaining seats).
-- Seats are represented visually with colors to indicate availability.(Green - reserved seats and gray - unreserved seats.)
+- Seats are represented visually with colors to indicate availability. (Green - reserved seats and gray - unreserved seats.)
 
 ### Glimpses
 
@@ -38,12 +38,12 @@ The application allows users to reserve seats in a train coach following specifi
 
 ## Features
 
-1. There can be any number of seats in a coach of a train, with 7 seats in most rows and remaining seats in the last row.
+1. There can be any number of seats in a coach of train, with 7 seats in most rows and the remaining seats in the last row.
 2. Users can reserve up to 7 seats at a time.
 3. Seats should be booked in one row whenever possible.
 4. If seats are not available in a single row, nearby seats are booked.
 5. Users can book multiple tickets until the coach is full.
-6. The application does not require a login functionality.
+6. The application does not require login functionality.
 
 ## Technologies Used
 
