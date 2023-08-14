@@ -71,8 +71,8 @@ The application allows users to reserve seats in a train coach following specifi
 1. Clone this repository:
 
 ```bash
-git clone https://github.com/your-username/train-seat-booking-mvc.git
-cd train-seat-booking-mvc
+git clone https://github.com/Prakhar-Verma39/Train-Seat-Booking-System.git
+cd Train-Seat-Booking-System
 ```
 
 2. Install dependencies.
