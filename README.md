@@ -1,3 +1,5 @@
+![Screenshot (129)](https://github.com/Prakhar-Verma39/Train-Seat-Booking-System/assets/103757447/21e76aba-ba6c-4c0d-98dc-a207ac418e9e)
+![Screenshot (128)](https://github.com/Prakhar-Verma39/Train-Seat-Booking-System/assets/103757447/303136a4-ad4c-40aa-8d30-5df4e365f756)
  ## Train Seat Booking System
 
 This is a simple web application that simulates a train seat booking system. 
@@ -30,8 +32,12 @@ The application allows users to reserve seats in a train coach following specifi
 
 ### Glimpses
 
-![Screenshot 1](https://example.com/screenshot1.png)
-![Screenshot 2](https://example.com/screenshot2.png)
+![Screenshot (125)](https://github.com/Prakhar-Verma39/Train-Seat-Booking-System/assets/103757447/9aa97b7f-d909-4d4a-a4c9-0f54a0cfaf7c)
+![Screenshot (126)](https://github.com/Prakhar-Verma39/Train-Seat-Booking-System/assets/103757447/b18aa9a8-37ad-4cde-8110-5a88607f6cc7)
+![Screenshot (127)](https://github.com/Prakhar-Verma39/Train-Seat-Booking-System/assets/103757447/3a06f5b6-2d06-40b4-920b-01870c07b9ed)
+![Screenshot (128)](https://github.com/Prakhar-Verma39/Train-Seat-Booking-System/assets/103757447/ba945a31-45d8-4bc9-80fe-787844942eb3)
+![Screenshot (129)](https://github.com/Prakhar-Verma39/Train-Seat-Booking-System/assets/103757447/62ac7e95-e263-468e-8073-9a2ab56ca4f1)
+
 
 ## Features
 
