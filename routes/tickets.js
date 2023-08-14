@@ -1,19 +1,19 @@
 const express = require('express');
 const router = express.Router();
 const tickets = require('../controllers/tickets');
-
+const catchAsync = require('../utils/catchAsync');
 
 router.route('/')
-    .get(tickets.index)
-    .post(tickets.createTicket)
+    .get(catchAsync(tickets.index))
+    .post(catchAsync(tickets.createTicket))
 
 router.get('/new', tickets.renderNewForm)
 
 router.route('/:id')
-    .get(tickets.showTicket)
-    .patch(tickets.updateTicket)
-    .delete(tickets.deleteTicket)
+    .get(catchAsync(tickets.showTicket))
+    .patch(catchAsync(tickets.updateTicket))
+    .delete(catchAsync(tickets.deleteTicket))
 
-router.get('/:id/edit', tickets.renderEditForm);
+router.get('/:id/edit', catchAsync(tickets.renderEditForm));
 
 module.exports = router;

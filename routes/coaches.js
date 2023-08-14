@@ -1,19 +1,20 @@
 const express = require('express');
 const router = express.Router();
 const coaches = require('../controllers/coaches');
+const catchAsync = require('../utils/catchAsync');
 
 
 router.route('/')
-    .get(coaches.index)
-    .post(coaches.createCoach)
+    .get(catchAsync(coaches.index))
+    .post(catchAsync(coaches.createCoach))
 
 router.get('/new', coaches.renderNewForm)
 
 router.route('/:id')
-    .get(coaches.showCoach)
-    .patch(coaches.updateCoach)
-    .delete(coaches.deleteCoach)
+    .get(catchAsync(coaches.showCoach))
+    .patch(catchAsync(coaches.updateCoach))
+    .delete(catchAsync(coaches.deleteCoach))
 
-router.get('/:id/edit', coaches.renderEditForm);
+router.get('/:id/edit', catchAsync(coaches.renderEditForm));
 
 module.exports = router;

@@ -33,6 +33,7 @@ module.exports.createCoach = async (req, res) => {
     data.forEach(datum => newCoach.coach.push(datum));
 
     await newCoach.save();
+    req.flash('success', "Successfully made a new coach!");
     res.redirect(`/coaches/${newCoach._id}`)
 };
 
@@ -71,7 +72,8 @@ module.exports.updateCoach = async (req, res) => {
 
 // "update" tickets on first row only
 const { coach, id } = await Coach.findById(req.params.id);
-let { required_seats } = req.body;
+const { required_seats } = req.body;
+let need_seats = required_seats;
 let total_empty_seats = 0
 
 // to get total empty seats
@@ -80,10 +82,10 @@ for (let row_id of coach) {
     total_empty_seats += row.emptySeats;
 }
 
-if(total_empty_seats >= required_seats){
+if(total_empty_seats >= need_seats){
     let max = 0
 
-    while(required_seats > 0)
+    while(need_seats > 0)
     {
         let max_row = null;
         let max_row_number = 0;
@@ -95,10 +97,10 @@ if(total_empty_seats >= required_seats){
             let row = await Row.findById(row_id)
             
             // Check if the row is available and has enough seats
-            if(row.isAvailable && row.emptySeats >= required_seats)
+            if(row.isAvailable && row.emptySeats >= need_seats)
             {
-                assign_seat(row, row_number, required_seats) // Assign seats
-                required_seats = 0
+                assign_seat(row, row_number, need_seats) // Assign seats
+                need_seats = 0
             }
             else if(row.isAvailable && row.emptySeats > max)
             {
@@ -110,12 +112,12 @@ if(total_empty_seats >= required_seats){
         }
 
         // Assign seats on max row with remaining required seats
-        while(required_seats > 0 && max > 0){
-            assign_seat(max_row, max_row_number, Math.min(required_seats, max))
-            required_seats -= Math.min(required_seats, max)
+        while(need_seats > 0 && max > 0){
+            assign_seat(max_row, max_row_number, Math.min(need_seats, max))
+            need_seats -= Math.min(need_seats, max)
 
             // If more seats required, update max_row and max
-            if(required_seats > 0){
+            if(need_seats > 0){
                 max_row_number = update_max_row(max_row_number)
                 max_row = await Row.findById(coach[max_row_number])
                 max = max_row.emptySeats
@@ -123,9 +125,9 @@ if(total_empty_seats >= required_seats){
         }
 
         // Function to assign seats to a row
-        async function assign_seat(row, row_number, required_seats){
+        async function assign_seat(row, row_number, need_seats){
             // to make required number of tickets and provide them seat numbers
-            const tickets = Array.from({ length: parseInt(required_seats) }, (_, i) => new Ticket({ seat_number: i + 1 + row.seats.length + row_number*7}));
+            const tickets = Array.from({ length: parseInt(need_seats) }, (_, i) => new Ticket({ seat_number: i + 1 + row.seats.length + row_number*7}));
             await Ticket.insertMany(tickets);
 
             // to add new tickets in seats array, update ramaining empty seats in one row 
@@ -164,6 +166,7 @@ if(total_empty_seats >= required_seats){
             return max_row_number
         }
     }
+    req.flash('success', `Successfully boooked ${required_seats} seats.` );
 }
     res.redirect(`/coaches/${id}`)
 
@@ -173,5 +176,6 @@ module.exports.deleteCoach = async (req, res) => {
     const { id } = req.params;
     await Coach.findByIdAndDelete(id)
     
+    req.flash('success', `Successfully deleted ${id} coach.` );
     res.redirect('/coaches');
 };
