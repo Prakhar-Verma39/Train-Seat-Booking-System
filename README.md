@@ -109,6 +109,4 @@ This application is a simplified simulation of a train seat booking system and s
 
 ## License
 
-Specify the license under which your project is released. For example:
-
 This project is licensed under the [MIT License](LICENSE).
