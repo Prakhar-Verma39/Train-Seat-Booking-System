@@ -92,7 +92,7 @@ npm install
 3. Run the application.
 
 ```bash
-node .\\index.js
+node .index.js
 ```
 
 4. Open a web browser and navigate to `http://localhost:4000`.
